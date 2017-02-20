@@ -51,59 +51,13 @@ cluster16 = CareerCluster.objects.get(id = 17)
 #school7 = school.objects.get(id = 7)
 
 
-#def register(request):
- #   if request.method == 'POST':
-  #      form = UserCreationForm(request.POST)
-   #     if form.is_valid():
-    #        form.save()
-     #       return HttpResponseRedirect('/accounts/register/complete')
 
-    #else:
-     #   form = UserCreationForm()
-    #token = {}
-    #token.update(csrf(request))
-    #token['form'] = form
-
-    #return render_to_response('registration/registration_form.html', token)
-
-#def registration_complete(request):
- #   return render_to_response('registration/registration_complete.html')
-#login_required(login_url="login/")
 def about(request):
      return render(request, 'careerapp/about.html', {})
 
 def help(request):
      return render(request, 'careerapp/help.html', {})
 
-# This function-based view handles the requests to the root URL /. See
-# urls.py for the mapping.
-def registration_form(request):
-  # If the request method is POST, it means that the form has been submitted
-  # and we need to validate it.
-  if request.method == 'POST':
-    # Create a RegistrationForm instance with the submitted data
-    form = RegistrationForm(request.POST)
-    
-    # is_valid validates a form and returns True if it is valid and
-    # False if it is invalid.
-    if form.is_valid():
-      # The form is valid and you could save it to a database
-      # by creating a model object and populating the
-      # data from the form object, but here we are just
-      # rendering a success template page.
-      return render(request, 'careerapp/success.html')
- 
- # This means that the request is a GET request. So we need to
- # create an instance of the RegistrationForm class and render it in
- # the template
-  else:
-   form = RegistrationForm()
- 
- # Render the registration form template with a RegistrationForm instance. If the
- # form was submitted and the data found to be invalid, the template will
- # be rendered with the entered data and error messages. Otherwise an empty
- # form will be rendered. Check the comments in the registration_form.html template
- # to understand how this is done.
   return render(request, 'careerapp/registration_form.html',
                 { 'form' : form })
 
