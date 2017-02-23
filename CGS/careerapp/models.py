@@ -49,6 +49,7 @@ class CareerPathway(models.Model):
     def __str__(self):
         return self.name
 
+
 class Programme(models.Model):
     name = models.CharField(max_length=500)
     faculty = models.ForeignKey('Faculty')
@@ -58,6 +59,16 @@ class Programme(models.Model):
 
     def __str__(self):
         return self.name
+
+class course(models.Model):
+    name = models.CharField(max_length=500)
+    faculty = models.ManyToManyField('Faculty')
+    School= models.ManyToManyField('School')
+    career = models.ManyToManyField(CareerPathway, blank=True)
+
+    def __str__(self):
+        return self.name
+
 
 
 

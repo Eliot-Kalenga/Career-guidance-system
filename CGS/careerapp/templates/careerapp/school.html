@@ -1,0 +1,16 @@
+{% extends 'careerapp/base.html' %}
+
+
+{% block title %}
+<title>schools</title>
+{% endblock %}
+
+{% block content %}
+
+<h2>Public Colleges in Malawi</h2>
+<form	method="POST"	class="post-form">{%	csrf_token	%}
+        {{ form.as_table }}
+        <button	type="submit"	class="save	btn	btn-default btn-lg">view Faculties and Programmes</button>
+
+</form>
+{% endblock %}

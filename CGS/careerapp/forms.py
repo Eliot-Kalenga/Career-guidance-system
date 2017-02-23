@@ -12,6 +12,22 @@ class GradesForm(forms.Form):
     grade4 = forms.ModelChoiceField(queryset=Subject.objects.all(), label='Subject')
     grade5 = forms.ModelChoiceField(queryset=Subject.objects.all(), label='Subject')
 
+class coursesForm(forms.Form):
+    grade0 = forms.ModelChoiceField(queryset=course.objects.all(), label='Course 1')
+    grade1 = forms.ModelChoiceField(queryset=course.objects.all(), label='course 2')
+    grade2 = forms.ModelChoiceField(queryset=course.objects.all(), label='Course 3')
+    grade3 = forms.ModelChoiceField(queryset=course.objects.all(), label='Course 4')
+    grade4 = forms.ModelChoiceField(queryset=course.objects.all(), label='Course 5')
+    grade5 = forms.ModelChoiceField(queryset=course.objects.all(), label='Course 6')
+    grade6 = forms.ModelChoiceField(queryset=course.objects.all(), label='Course 7')
+    grade7 = forms.ModelChoiceField(queryset=course.objects.all(), label='Course 8')
+    grade8 = forms.ModelChoiceField(queryset=course.objects.all(), label='Course 9')
+    grade9 = forms.ModelChoiceField(queryset=course.objects.all(), label='Course 10')
+
+
+class InstitutionsForm(forms.Form):
+    grade = forms.ModelChoiceField(queryset=School.objects.all(), label='College')
+
 class ClusterForm(forms.Form):
     cluster1 = forms.ModelMultipleChoiceField(
         queryset = ClusterActivity.objects.filter(cluster_id = 1),
@@ -95,3 +111,35 @@ class ClusterForm(forms.Form):
         label = '',
         required = False,    )
 
+# Create form class for the Login form
+class LoginForm(AuthenticationForm):
+    username = forms.CharField(label="Username", max_length=30,
+                               widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'username'}))
+    password = forms.CharField(label="Password", max_length=30,
+                               widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'password', 'type':'password'}))
+
+# Create form class for the Registration form
+class RegistrationForm(forms.Form):
+  name = forms.CharField()
+  username = forms.CharField()
+  email = forms.EmailField()
+  password = forms.CharField(widget=forms.PasswordInput) # Set the widget to
+                                                         # PasswordInput
+  password2 = forms.CharField(widget=forms.PasswordInput,
+                              label="Confirm password") # Set the widget to
+                                                        # PasswordInput and
+                                                        # set an appropriate
+                                                        # label
+  #captcha = CaptchaField()
+  
+  # clean_<fieldname> method in a form class is used to do custom validation
+  # for the field.
+  # We are doing a custom validation for the 'password2' field and raising
+  # a validation error if the password and its confirmation do not match
+  def clean_password2(self):
+    password = self.cleaned_data['password'] # cleaned_data dictionary has the
+                                             # the valid fields
+    password2 = self.cleaned_data['password2']
+    if password != password2:
+      raise forms.ValidationError("Passwords do not match.")
+    return password2
