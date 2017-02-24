@@ -13,20 +13,20 @@ class GradesForm(forms.Form):
     grade5 = forms.ModelChoiceField(queryset=Subject.objects.all(), label='Subject')
 
 class coursesForm(forms.Form):
-    grade0 = forms.ModelChoiceField(queryset=course.objects.all(), label='Course 1')
-    grade1 = forms.ModelChoiceField(queryset=course.objects.all(), label='course 2')
-    grade2 = forms.ModelChoiceField(queryset=course.objects.all(), label='Course 3')
-    grade3 = forms.ModelChoiceField(queryset=course.objects.all(), label='Course 4')
-    grade4 = forms.ModelChoiceField(queryset=course.objects.all(), label='Course 5')
-    grade5 = forms.ModelChoiceField(queryset=course.objects.all(), label='Course 6')
-    grade6 = forms.ModelChoiceField(queryset=course.objects.all(), label='Course 7')
-    grade7 = forms.ModelChoiceField(queryset=course.objects.all(), label='Course 8')
-    grade8 = forms.ModelChoiceField(queryset=course.objects.all(), label='Course 9')
-    grade9 = forms.ModelChoiceField(queryset=course.objects.all(), label='Course 10')
+    course0 = forms.ModelChoiceField(queryset=course.objects.all(), label='Course 1')
+    course1 = forms.ModelChoiceField(queryset=course.objects.all(), label='course 2')
+    course2 = forms.ModelChoiceField(queryset=course.objects.all(), label='Course 3')
+    course3 = forms.ModelChoiceField(queryset=course.objects.all(), label='Course 4')
+    course4 = forms.ModelChoiceField(queryset=course.objects.all(), label='Course 5')
+    course5 = forms.ModelChoiceField(queryset=course.objects.all(), label='Course 6')
+    course6 = forms.ModelChoiceField(queryset=course.objects.all(), label='Course 7')
+    course7 = forms.ModelChoiceField(queryset=course.objects.all(), label='Course 8')
+    course8 = forms.ModelChoiceField(queryset=course.objects.all(), label='Course 9')
+    course9 = forms.ModelChoiceField(queryset=course.objects.all(), label='Course 10')
 
 
 class InstitutionsForm(forms.Form):
-    grade = forms.ModelChoiceField(queryset=School.objects.all(), label='College')
+    Institution = forms.ModelChoiceField(queryset=School.objects.all(), label='College')
 
 class ClusterForm(forms.Form):
     cluster1 = forms.ModelMultipleChoiceField(

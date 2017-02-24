@@ -123,7 +123,7 @@ class EnterGrades(View):
     def get(self, request, *args, **kwargs):
         form = self.form_class()
         return render(request, self.template_name, {'form': form})
-class Enterprogrammes(View):
+class Entercourses(View):
     f_class = coursesForm
     t_name = 'careerapp/enter_course.html'
 
