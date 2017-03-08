@@ -12,7 +12,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>programmes</title>
+    <title>careerpath</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{% static 'careerapp/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -45,7 +45,7 @@
     <div class="navbar-wrapper">
       <div class="container">
 
-        <nav style="background-color: darkslategrey; color:white; height: 80px;"  class="navbar navbar-inverse navbar-fixed-top">
+        <nav style="background-color: darkslategrey; color:white;" class="navbar navbar-inverse navbar-fixed-top">
           <div class="container-fluid">
             <div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -57,10 +57,11 @@
               <a class="navbar-brand" href="#">Career Guidance System</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
-              <ul  class="nav navbar-nav navbar-right">
+              <ul class="nav navbar-nav navbar-right">
                 <li><a href="..">Home</a></li>
                 <li><a href="../careers">Careers</a></li>
                 <li><a href="../institutions">Institutions</a></li>
+                <li><a href="../programmes">Programmes</a></li>
                 <li><a href="../self_assessment">Self Assessment</a></li>
                 <li><a href="../about">About Us</a></li>
                 <li><a href="../home">Help</a></li>
@@ -76,21 +77,21 @@
     </div>
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-              <h2 class="sub-header">You may be eligible for the following programmes:</h2>
+              <h2 class="sub-header">Institution Details:</h2>
               <div class="table-responsive">
                 <table class="table table-striped">
                   <thead>
                     <tr>
                       <th>Programme</th>
-                      <th>Duration(years)</th>
+                      <th>Faculty</th>
                       <th>Institution</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {% for key, value in programmes.items %}
+                    {% for key, value in careerpathway.items %}
                       <tr>
                         <td><h4>{{ key }}</h4></td>
-                        <td><h4>4 years</h4></td>
+                        <td><h4>{{ value  }}</h4></td>
                         <td><h4>{{ value  }}</h4></td>
 
                       </tr>

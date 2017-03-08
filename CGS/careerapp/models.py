@@ -19,6 +19,7 @@ class School(models.Model):
         return self.name
 
 
+
 class Faculty(models.Model):
     name = models.CharField(max_length=200)
     school = models.ForeignKey('School')
@@ -54,22 +55,43 @@ class Programme(models.Model):
     name = models.CharField(max_length=500)
     faculty = models.ForeignKey('Faculty')
     duration = models.IntegerField(default=4)
-    prereq = models.ManyToManyField(Subject, null=True, blank=True)
+    prereq = models.ForeignKey(Subject, null=True, blank=True)
     career = models.ManyToManyField(CareerPathway, blank=True)
+#
+#class Admin:
+ #   list_display = ('name')
+  #  list_filter = ('name')
+   # ordering = ('name',)
+    #search_fields = ('name',)
 
-    def __str__(self):
-        return self.name
+    #def __str__(self):
+     #   return self.name
+class Prerequisite_course(models.Model):
+    course_code = models.CharField(max_length=300, blank=True)
+    course_name = models.CharField(max_length=300, blank=True)
+       
+    def __init__(self):
+        return self.course_name
+           
+class corequisite_course(models.Model):
+    course_code = models.CharField(max_length=300, blank=True)
+    course_name = models.CharField(max_length=300, blank=True)
+       
+    def __init__(self):
+        return self.course_name
+
 
 class course(models.Model):
-    name = models.CharField(max_length=500)
+    course_code = models.CharField(max_length=300, blank=True)
+    course_name = models.CharField(max_length=300, blank=True)
+    Department = models.CharField(max_length=300, blank=True)
     faculty = models.ManyToManyField('Faculty')
-    School= models.ManyToManyField('School')
-    career = models.ManyToManyField(CareerPathway, blank=True)
+    institution = models.ManyToManyField('School')
+    Prerequisite = models.ManyToManyField(Prerequisite_course, blank=True)
+    corequisite = models.ManyToManyField(corequisite_course, blank=True)
 
     def __str__(self):
-        return self.name
-
-
+        return self.course_code
 
 
 class CareerCluster(models.Model):

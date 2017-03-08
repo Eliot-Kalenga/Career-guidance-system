@@ -19,11 +19,7 @@ class coursesForm(forms.Form):
     course3 = forms.ModelChoiceField(queryset=course.objects.all(), label='Course 4')
     course4 = forms.ModelChoiceField(queryset=course.objects.all(), label='Course 5')
     course5 = forms.ModelChoiceField(queryset=course.objects.all(), label='Course 6')
-    course6 = forms.ModelChoiceField(queryset=course.objects.all(), label='Course 7')
-    course7 = forms.ModelChoiceField(queryset=course.objects.all(), label='Course 8')
-    course8 = forms.ModelChoiceField(queryset=course.objects.all(), label='Course 9')
-    course9 = forms.ModelChoiceField(queryset=course.objects.all(), label='Course 10')
-
+    
 
 class InstitutionsForm(forms.Form):
     Institution = forms.ModelChoiceField(queryset=School.objects.all(), label='College')

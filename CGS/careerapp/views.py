@@ -123,23 +123,6 @@ class EnterGrades(View):
     def get(self, request, *args, **kwargs):
         form = self.form_class()
         return render(request, self.template_name, {'form': form})
-class Entercourses(View):
-    f_class = coursesForm
-    t_name = 'careerapp/enter_course.html'
-
-    def get(self, request, *args, **kwargs):
-        form = self.f_class()
-        return render(request, self.t_name, {'form': form})
-
-class DisplayInstitutions(View):
-    fo_class = InstitutionsForm
-    te_name = 'careerapp/school.html'
-
-    def get(self, request, *args, **kwargs):
-        form = self.fo_class()
-        return render(request, self.te_name, {'form': form})
-
-    #@login_required(login_url="login/")
     def post(self, request, *args, **kwargs):
         data = []
         form = self.form_class(request.POST)
@@ -165,6 +148,54 @@ class DisplayInstitutions(View):
         return render(request, self.template_name, context)
 
 
+
+
+class Entercourses(View):
+    f_class = coursesForm
+    t_name = 'careerapp/enter_course.html'
+
+    def get(self, request, *args, **kwargs):
+        form = self.f_class()
+        return render(request, self.t_name, {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        data = []
+        form = self.f_class(request.POST)
+        allprog = course.objects.all()
+        programmes = {}
+        facultys = []
+        institutions = []
+
+        context = {'form': form, 'data': data, 'allprog':allprog, 'programmes':programmes, 'facultys':facultys, 'institutions':institutions,}
+
+        if form.is_valid():
+
+            for i in range(6):
+                data.append(form.cleaned_data['course%s' %i])
+
+            for i in allprog:
+
+                if set(i.career.all()) < set(data):
+                    courses.update({str(i.name):str(i.faculty.school.name)})
+                    facultys.append(str(i.faculty.school.name))
+
+            return render(request, 'careerapp/Careerpath.html', context)
+        return render(request, self.t_name, context)
+
+
+
+
+class DisplayInstitutions(View):
+    fo_class = InstitutionsForm
+    te_name = 'careerapp/school.html'
+
+    def get(self, request, *args, **kwargs):
+        form = self.fo_class()
+        return render(request, self.te_name, {'form': form})
+
+   
+    #@login_required(login_url="login/")
+    
 class ChooseInterests(View):
     form_class = ClusterForm
     template_name = 'careerapp/career_interests.html'
